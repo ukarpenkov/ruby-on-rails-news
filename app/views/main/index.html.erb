@@ -1,0 +1,29 @@
+<h1>News</h1>
+
+<section>
+  <h2>Rubrics</h2>
+  <% if @rubrics.blank? %>
+    <p>no rubrics</p>
+  <% else %>
+    <% @rubrics.each do |rubric| %>
+      <article>
+        <h3><%= rubric.title %></h3>
+        <p><%= rubric.description %></p>
+      </article>
+    <% end %>
+  <% end %>
+</section>
+
+<section>
+  <h2>Latest</h2>
+  <% if @hits.blank? %>
+    <p>no articles</p>
+  <% else %>
+    <% @hits.each do |article| %>
+      <article>
+        <h3><%= article.title %></h3>
+        <p><%= article.body %></p>
+      </article>
+    <% end %>
+  <% end %>
+</section>

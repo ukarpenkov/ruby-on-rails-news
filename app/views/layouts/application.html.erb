@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Ruby On Rails News" %></title>
+    <title><%= @page_title || content_for(:title) || "Ruby On Rails News" %></title>
+    <% if @page_description %>
+      <meta name="description" content="<%= @page_description %>">
+    <% end %>
+    <% if @page_keywords %>
+      <meta name="keywords" content="<%= @page_keywords %>">
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Ruby On Rails News">
