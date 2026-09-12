@@ -51,7 +51,7 @@ env:
     # Set number of cores available to the application on each server (default: 1).
     # WEB_CONCURRENCY: 2
 
-    # Match this to any external database server to configure Active Record correctly
+    # Match this to any external PostgreSQL server to configure Active Record correctly
     # Use ruby_on_rails_news-db for a db accessory server on same machine via local kamal docker network.
     # DB_HOST: 192.168.0.2
 
@@ -66,7 +66,7 @@ aliases:
   logs: app logs -f
   dbc: app exec --interactive --reuse "bin/rails dbconsole --include-password"
 
-# Use a persistent storage volume for sqlite database files and local Active Storage files.
+# Persistent volume for Active Storage uploads. The application database is PostgreSQL.
 # Recommended to change this to a mounted volume path that is backed up off server.
 volumes:
   - "ruby_on_rails_news_storage:/rails/storage"
@@ -97,20 +97,17 @@ builder:
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
 #   db:
-#     image: mysql:8.0
+#     image: postgres:16
 #     host: 192.168.0.2
-#     # Change to 3306 to expose port to the world instead of just local network.
-#     port: "127.0.0.1:3306:3306"
+#     port: "127.0.0.1:5432:5432"
 #     env:
 #       clear:
-#         MYSQL_ROOT_HOST: '%'
+#         POSTGRES_USER: ruby_on_rails_news
+#         POSTGRES_DB: ruby_on_rails_news_production
 #       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+#         - POSTGRES_PASSWORD
 #     directories:
-#       - data:/var/lib/mysql
+#       - data:/var/lib/postgresql/data
 #   redis:
 #     image: valkey/valkey:8
 #     host: 192.168.0.2

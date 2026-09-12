@@ -6,9 +6,19 @@
 
 - Ruby 3.4
 - Rails 8.1
-- SQLite in development (PostgreSQL later in the course)
+- PostgreSQL 16
 
 ## Setup
+
+Install and start PostgreSQL (macOS / Homebrew):
+
+```bash
+brew install postgresql@16
+brew services start postgresql@16
+echo 'export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"' >> ~/.zshrc
+```
+
+Then install gems and prepare the database:
 
 ```bash
 bin/setup
