@@ -22,6 +22,7 @@
     <% @hits.each do |article| %>
       <article>
         <h3><%= article.title %></h3>
+        <p><%= article.rubric.title %></p>
         <p><%= article.body %></p>
       </article>
     <% end %>

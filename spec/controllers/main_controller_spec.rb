@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe MainController, type: :controller do
   describe "GET #index" do
     let!(:rubrics) { create_list :rubric, 3 }
-    let!(:hits) { create_list :article, 8 }
+    let!(:hits) { create_list :article, 8, rubric: rubrics.first }
 
     before { get :index }
 

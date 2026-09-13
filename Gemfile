@@ -72,4 +72,5 @@ group :test do
   gem "selenium-webdriver"
 
   gem "rails-controller-testing"
+  gem "shoulda-matchers"
 end

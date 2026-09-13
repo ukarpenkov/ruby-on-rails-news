@@ -5,7 +5,7 @@ class MainController < ApplicationController
 
   def index
     @rubrics = Rubric.limit(3)
-    @hits = Article.limit(8)
+    @hits = Article.includes(:rubric).limit(8)
   end
 
   def set_page_options
