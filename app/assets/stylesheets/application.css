@@ -1,10 +1,113 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Black and white newspaper for the news homepage.
  */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.masthead {
+  border-top: 4px solid #000;
+  border-bottom: 2px solid #000;
+  padding: 0.75rem 0;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.masthead__name {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.masthead__date {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+  padding-bottom: 0.35rem;
+}
+
+.rubrics {
+  margin-bottom: 2.5rem;
+}
+
+.rubrics__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.rubric {
+  border: 1px solid #000;
+  padding: 0.75rem 1rem;
+}
+
+.rubric__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.rubric__description {
+  margin: 0.35rem 0 0;
+}
+
+.hit {
+  border-bottom: 1px solid #000;
+  padding: 1.25rem 0;
+}
+
+.hit:first-of-type .hit__title {
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.hit__rubric {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hit__title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.hit__body {
+  margin: 0.5rem 0 0;
+}
+
+p {
+  line-height: 1.45;
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= @page_title || content_for(:title) || "Ruby On Rails News" %></title>
     <% if @page_description %>
@@ -30,6 +30,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="page">
+      <header class="masthead">
+        <p class="masthead__name">The News</p>
+        <p class="masthead__date"><%= Time.current.strftime("%d.%m.%Y") %></p>
+      </header>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
