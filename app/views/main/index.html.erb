@@ -22,11 +22,11 @@
     <p>no articles</p>
   <% else %>
     <% @hits.each do |article| %>
-      <article class="hit">
+      <%= link_to article_path(article), class: "hit" do %>
         <p class="hit__rubric"><%= article.rubric.title %></p>
         <h2 class="hit__title"><%= article.title %></h2>
         <p class="hit__body"><%= article.body %></p>
-      </article>
+      <% end %>
     <% end %>
   <% end %>
 </section>
