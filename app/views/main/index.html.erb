@@ -6,22 +6,37 @@
   <% else %>
     <ul class="rubrics__list">
       <% @rubrics.each do |rubric| %>
-        <li class="rubric">
-          <h2 class="rubric__title"><%= rubric.title %></h2>
-          <p class="rubric__description"><%= rubric.description %></p>
+        <li class="rubric <%= "rubric--active" if params[:rubric_id].to_s == rubric.id.to_s %>">
+          <%= link_to root_path(rubric_id: rubric.id), class: "rubric__link" do %>
+            <h2 class="rubric__title"><%= rubric.title %></h2>
+            <p class="rubric__description"><%= rubric.description %></p>
+          <% end %>
         </li>
       <% end %>
+      <li class="rubric rubric--all">
+        <%= link_to "Все рубрики", root_path, class: "rubric__link" %>
+      </li>
     </ul>
+  <% end %>
+</section>
+
+<section class="search">
+  <h1>Search</h1>
+
+  <%= form_with url: root_path, method: :get, class: "search__form" do |form| %>
+    <%= form.hidden_field :rubric_id, value: params[:rubric_id] %>
+    <%= form.text_field :q, value: params[:q], placeholder: "Поиск по новостям", class: "search__input" %>
+    <%= form.submit "Найти", class: "search__button" %>
   <% end %>
 </section>
 
 <section class="hits">
   <h1>Today</h1>
 
-  <% if @hits.blank? %>
+  <% if @articles.blank? %>
     <p>no articles</p>
   <% else %>
-    <% @hits.each do |article| %>
+    <% @articles.each do |article| %>
       <%= link_to article_path(article), class: "hit" do %>
         <p class="hit__rubric"><%= article.rubric.title %></p>
         <h2 class="hit__title"><%= article.title %></h2>

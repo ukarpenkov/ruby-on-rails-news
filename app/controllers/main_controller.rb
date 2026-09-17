@@ -4,8 +4,17 @@ class MainController < ApplicationController
   before_action :set_page_options
 
   def index
-    @rubrics = Rubric.limit(3)
-    @hits = Article.includes(:rubric).limit(8)
+    @rubrics = Rubric.order(:id)
+    @articles = filtered_articles
+  end
+
+  private
+
+  def filtered_articles
+    articles = Article.includes(:rubric).order(created_at: :desc, id: :desc)
+    articles = articles.by_rubric(params[:rubric_id]) if params[:rubric_id].present?
+    articles = articles.search(params[:q]) if params[:q].present?
+    articles
   end
 
   def set_page_options

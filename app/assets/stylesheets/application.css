@@ -81,6 +81,58 @@ h1 {
   margin: 0.35rem 0 0;
 }
 
+.rubric__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.rubric__link:hover .rubric__title {
+  text-decoration: underline;
+}
+
+.rubric--active {
+  background: #000;
+  color: #fff;
+}
+
+.rubric--all {
+  text-align: center;
+}
+
+.rubric--all .rubric__link {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search {
+  margin-bottom: 2.5rem;
+}
+
+.search__form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search__input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  font: inherit;
+}
+
+.search__button {
+  padding: 0.6rem 1.25rem;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
 .masthead__name a {
   color: inherit;
   text-decoration: none;
