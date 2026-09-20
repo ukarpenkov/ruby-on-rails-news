@@ -34,6 +34,21 @@
       <header class="masthead">
         <p class="masthead__name"><%= link_to "The News", root_path %></p>
         <p class="masthead__date"><%= Time.current.strftime("%d.%m.%Y") %></p>
+
+        <div class="account">
+          <% if current_user %>
+            <%= button_to logout_path, method: :delete, form_class: "account__form", class: "avatar avatar--user", title: "Выйти", aria: { label: "Выйти" } do %>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            <% end %>
+          <% else %>
+            <%= link_to login_path, class: "avatar avatar--guest", title: "Войти", aria: { label: "Войти" } do %>
+              ?
+            <% end %>
+          <% end %>
+        </div>
       </header>
 
       <%= yield %>

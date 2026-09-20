@@ -51,5 +51,12 @@ RSpec.describe "Main page", type: :request do
 
       expect(response.body).to include('name="q"')
     end
+
+    it "shows a guest avatar that leads to login" do
+      get root_path
+
+      expect(response.body).to include("avatar--guest")
+      expect(response.body).to include(login_path)
+    end
   end
 end

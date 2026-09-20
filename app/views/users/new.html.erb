@@ -1,0 +1,34 @@
+<section class="auth">
+  <h1>Регистрация</h1>
+
+  <% if @user.errors.any? %>
+    <ul class="auth__errors">
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @user, url: signup_path, class: "auth__form" do |form| %>
+    <label class="auth__field">
+      Логин
+      <%= form.text_field :login, required: true, autocomplete: "username" %>
+    </label>
+
+    <label class="auth__field">
+      Пароль
+      <%= form.password_field :password, required: true, minlength: 4, autocomplete: "new-password" %>
+    </label>
+
+    <label class="auth__field">
+      Пароль ещё раз
+      <%= form.password_field :password_confirmation, required: true, minlength: 4, autocomplete: "new-password" %>
+    </label>
+
+    <%= form.submit "Зарегистрироваться", class: "auth__submit" %>
+  <% end %>
+
+  <p class="auth__hint">
+    <%= link_to "Уже есть аккаунт? Войти", login_path %>
+  </p>
+</section>

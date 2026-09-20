@@ -1,0 +1,25 @@
+<section class="auth">
+  <h1>Вход</h1>
+
+  <% if @error %>
+    <p class="auth__error"><%= @error %></p>
+  <% end %>
+
+  <%= form_with url: login_path, class: "auth__form" do |form| %>
+    <label class="auth__field">
+      Логин
+      <%= form.text_field :login, required: true, autocomplete: "username" %>
+    </label>
+
+    <label class="auth__field">
+      Пароль
+      <%= form.password_field :password, required: true, autocomplete: "current-password" %>
+    </label>
+
+    <%= form.submit "Войти", class: "auth__submit" %>
+  <% end %>
+
+  <p class="auth__hint">
+    <%= link_to "Нет аккаунта? Регистрация", signup_path %>
+  </p>
+</section>

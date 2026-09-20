@@ -25,9 +25,10 @@ body {
 }
 
 .masthead {
+  position: relative;
   border-top: 4px solid #000;
   border-bottom: 2px solid #000;
-  padding: 0.75rem 0;
+  padding: 0.75rem 2.75rem;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -205,5 +206,99 @@ p {
 }
 
 .story__back a {
+  color: #000;
+}
+
+.account {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.account__form {
+  margin: 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.avatar--guest {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.avatar svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.auth {
+  max-width: 22rem;
+}
+
+.auth__error,
+.auth__errors {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #000;
+}
+
+.auth__errors {
+  list-style: none;
+}
+
+.auth__form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.auth__field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.auth__field input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.auth__submit {
+  padding: 0.6rem 1.25rem;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.auth__hint {
+  margin: 1.25rem 0 0;
+}
+
+.auth__hint a {
   color: #000;
 }
