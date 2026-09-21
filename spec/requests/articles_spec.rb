@@ -20,5 +20,13 @@ RSpec.describe "Article page", type: :request do
       expect(response.body).to include("Gol na posledney minute.")
       expect(response.body).to include("Sport")
     end
+
+    it "shows a bookmark on the article" do
+      article = create(:article)
+
+      get article_path(article)
+
+      expect(response.body).to include("bookmark")
+    end
   end
 end

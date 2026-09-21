@@ -1,0 +1,18 @@
+<section class="hits">
+  <h1>Избранное</h1>
+
+  <% if @articles.blank? %>
+    <p>Пока нет сохранённых статей.</p>
+  <% else %>
+    <% @articles.each do |article| %>
+      <article class="hit">
+        <%= render "favorites/button", article: article %>
+        <%= link_to article_path(article), class: "hit__link" do %>
+          <p class="hit__rubric"><%= article.rubric.title %></p>
+          <h2 class="hit__title"><%= article.title %></h2>
+          <p class="hit__body"><%= article.body %></p>
+        <% end %>
+      </article>
+    <% end %>
+  <% end %>
+</section>

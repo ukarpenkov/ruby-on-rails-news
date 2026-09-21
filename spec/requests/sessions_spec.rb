@@ -22,6 +22,8 @@ RSpec.describe "Sessions", type: :request do
       expect(response).to redirect_to(root_path)
       follow_redirect!
       expect(response.body).to include("avatar--user")
+      expect(response.body).to include("Избранное")
+      expect(response.body).to include("Выйти")
     end
 
     it "rejects a wrong password" do

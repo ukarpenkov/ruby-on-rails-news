@@ -1,0 +1,21 @@
+<% if current_user %>
+  <% if favorited?(article) %>
+    <%= button_to article_favorite_path(article), method: :delete, form_class: "bookmark-form", class: "bookmark bookmark--saved", title: "Убрать из избранного", aria: { label: "Убрать из избранного" } do %>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 3.5h12a1 1 0 0 1 1 1V20l-7-3.8L5 20V4.5a1 1 0 0 1 1-1z" />
+      </svg>
+    <% end %>
+  <% else %>
+    <%= button_to article_favorite_path(article), method: :post, form_class: "bookmark-form", class: "bookmark", title: "В избранное", aria: { label: "В избранное" } do %>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 3.5h12a1 1 0 0 1 1 1V20l-7-3.8L5 20V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+      </svg>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to login_path, class: "bookmark", title: "Войдите, чтобы сохранить", aria: { label: "Войдите, чтобы сохранить" } do %>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 3.5h12a1 1 0 0 1 1 1V20l-7-3.8L5 20V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+    </svg>
+  <% end %>
+<% end %>

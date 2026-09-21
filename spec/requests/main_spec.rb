@@ -58,5 +58,33 @@ RSpec.describe "Main page", type: :request do
       expect(response.body).to include("avatar--guest")
       expect(response.body).to include(login_path)
     end
+
+    it "shows a bookmark on each article" do
+      get root_path
+
+      expect(response.body).to include("bookmark")
+      expect(response.body).to include(login_path)
+    end
+
+    context "when signed in" do
+      let!(:user) { create(:user, login: "ivan", password: "1234", password_confirmation: "1234") }
+
+      before { post login_path, params: { login: "ivan", password: "1234" } }
+
+      it "opens an account menu with favorites and logout" do
+        get root_path
+
+        expect(response.body).to include("avatar--user")
+        expect(response.body).to include("Избранное")
+        expect(response.body).to include(favorites_path)
+        expect(response.body).to include("Выйти")
+      end
+
+      it "shows a bookmark that saves the article" do
+        get root_path
+
+        expect(response.body).to include(article_favorite_path(article))
+      end
+    end
   end
 end

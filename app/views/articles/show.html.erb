@@ -1,5 +1,8 @@
 <article class="story">
-  <p class="story__rubric"><%= @article.rubric.title %></p>
+  <div class="story__heading">
+    <p class="story__rubric"><%= @article.rubric.title %></p>
+    <%= render "favorites/button", article: @article %>
+  </div>
   <h1 class="story__title"><%= @article.title %></h1>
   <p class="story__body"><%= @article.body %></p>
 
