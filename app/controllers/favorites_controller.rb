@@ -10,17 +10,26 @@ class FavoritesController < ApplicationController
 
   def create
     current_user.favorites.find_or_create_by!(article: article)
-    redirect_back_or_to article_path(article), status: :see_other
+    respond_to_toggle
   end
 
   def destroy
     current_user.favorites.find_by(article: article)&.destroy
-    redirect_back_or_to article_path(article), status: :see_other
+    respond_to_toggle
   end
 
   private
 
   def article
     @article ||= Article.find(params[:article_id])
+  end
+
+  def respond_to_toggle
+    @favorite_article_ids = current_user.favorites.reload.pluck(:article_id)
+
+    respond_to do |format|
+      format.turbo_stream { render :toggle }
+      format.html { redirect_back_or_to article_path(article), status: :see_other }
+    end
   end
 end

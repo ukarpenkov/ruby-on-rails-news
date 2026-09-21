@@ -203,8 +203,7 @@ p {
   margin: 0;
 }
 
-.story__heading .bookmark-form,
-.story__heading > .bookmark {
+.story__heading .favorite-button {
   flex-shrink: 0;
 }
 
@@ -306,8 +305,7 @@ p {
   margin: 0;
 }
 
-.hit .bookmark-form,
-.hit > .bookmark {
+.hit .favorite-button {
   position: absolute;
   top: 1.25rem;
   right: 0;

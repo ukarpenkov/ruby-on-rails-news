@@ -40,6 +40,17 @@ RSpec.describe "Favorites", type: :request do
 
       expect(user.favorite_articles).to include(article)
     end
+
+    it "replaces only the bookmark when requested as turbo stream" do
+      sign_in
+
+      post article_favorite_path(article), as: :turbo_stream
+
+      expect(response).to have_http_status(:ok)
+      expect(response.media_type).to eq(Mime[:turbo_stream])
+      expect(response.body).to include("Убрать из избранного")
+      expect(response).not_to redirect_to(root_path)
+    end
   end
 
   describe "DELETE /articles/:article_id/favorite" do
