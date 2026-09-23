@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
+  # POST /auth/facebook is handled by OmniAuth when the app keys are set.
+  # This route answers only before those keys exist.
+  post "/auth/facebook", to: "oauth#facebook_unavailable"
+  get "/auth/facebook/callback", to: "oauth#facebook"
+  get "/auth/failure", to: "oauth#failure"
+
   get "signup", to: "users#new"
   post "signup", to: "users#create"
 

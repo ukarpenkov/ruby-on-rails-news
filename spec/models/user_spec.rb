@@ -25,4 +25,28 @@ RSpec.describe User, type: :model do
     expect(user.password_digest).to be_present
     expect(user.password_digest).not_to eq("1234")
   end
+
+  it "requires a password for a password account" do
+    user = build(:user, password: nil, password_confirmation: nil)
+
+    expect(user).not_to be_valid
+  end
+
+  it "creates a facebook account without a password" do
+    auth = OmniAuth::AuthHash.new(provider: "facebook", uid: "42", info: { name: "Ivan Petrov" })
+
+    user = User.from_omniauth(auth)
+
+    expect(user).to be_persisted
+    expect(user.login).to eq("Ivan_Petrov")
+    expect(user.password_digest).to be_nil
+    expect(User.from_omniauth(auth)).to eq(user)
+  end
+
+  it "adds a suffix when the facebook name is already taken" do
+    create(:user, login: "Ivan_Petrov")
+    auth = OmniAuth::AuthHash.new(provider: "facebook", uid: "42", info: { name: "Ivan Petrov" })
+
+    expect(User.from_omniauth(auth).login).to eq("Ivan_Petrov_2")
+  end
 end

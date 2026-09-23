@@ -410,6 +410,28 @@ p {
   cursor: pointer;
 }
 
+.auth__divider {
+  margin: 1.25rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.auth__facebook-form {
+  margin: 0;
+}
+
+.auth__facebook {
+  width: 100%;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  cursor: pointer;
+}
+
 .auth__hint {
   margin: 1.25rem 0 0;
 }
