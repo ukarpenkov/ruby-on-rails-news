@@ -8,7 +8,7 @@ gem "propshaft"
 gem "pg", "~> 1.5"
 
 # json 3.x breaks Rails 8.1 session cookies: JSON.parse no longer takes a second positional arg.
-gem "json", "< 3"
+gem "json", "< 4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
