@@ -37,6 +37,7 @@
 
 # Ignore key files for decrypting credentials and more.
 /config/*.key
+/config/credentials.yml.enc
 
 # Ignore compiled assets.
 /public/assets
