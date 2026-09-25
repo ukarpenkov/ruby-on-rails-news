@@ -180,6 +180,17 @@ h1 {
   margin: 0.5rem 0 0;
 }
 
+.hits__sentinel {
+  height: 1px;
+}
+
+.hits__status {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 p {
   line-height: 1.45;
 }

@@ -30,21 +30,25 @@
   <% end %>
 </section>
 
-<section class="hits">
+<section
+  class="hits"
+  data-controller="infinite-scroll"
+  data-infinite-scroll-url-value="<%= root_path(rubric_id: params[:rubric_id].presence, q: params[:q].presence) %>"
+  data-infinite-scroll-page-value="<%= @page %>"
+  data-infinite-scroll-has-more-value="<%= @has_more %>"
+>
   <h1>Today</h1>
 
   <% if @articles.blank? %>
     <p>no articles</p>
   <% else %>
-    <% @articles.each do |article| %>
-      <article class="hit">
-        <%= render "favorites/button", article: article %>
-        <%= link_to article_path(article), class: "hit__link" do %>
-          <p class="hit__rubric"><%= article.rubric.title %></p>
-          <h2 class="hit__title"><%= article.title %></h2>
-          <p class="hit__body"><%= article.body %></p>
-        <% end %>
-      </article>
+    <div data-infinite-scroll-target="list">
+      <%= render partial: "hit", collection: @articles, as: :article %>
+    </div>
+
+    <% if @has_more %>
+      <div data-infinite-scroll-target="sentinel" class="hits__sentinel"></div>
+      <p data-infinite-scroll-target="status" class="hits__status" hidden></p>
     <% end %>
   <% end %>
 </section>

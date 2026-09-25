@@ -66,6 +66,27 @@ RSpec.describe "Main page", type: :request do
       expect(response.body).to include(login_path)
     end
 
+    it "shows the first ten articles and loads the next ten on scroll" do
+      older = create(:article, title: "Staraya novost", rubric: rubric, created_at: 2.days.ago)
+      newest = Array.new(10) do |index|
+        create(:article, title: format("Svezhaya %02d", index), rubric: rubric, created_at: index.minutes.from_now)
+      end
+
+      get root_path
+
+      newest.each { |item| expect(response.body).to include(item.title) }
+      expect(response.body).not_to include(older.title)
+      expect(response.body).to include('data-controller="infinite-scroll"')
+
+      get root_path(page: 2), headers: { "X-Requested-With" => "XMLHttpRequest" }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(older.title)
+      expect(response.body).to include(article.title)
+      newest.each { |item| expect(response.body).not_to include(item.title) }
+      expect(response.headers["X-Has-More"]).to eq("0")
+    end
+
     context "when signed in" do
       let!(:user) { create(:user, login: "ivan", password: "1234", password_confirmation: "1234") }
 

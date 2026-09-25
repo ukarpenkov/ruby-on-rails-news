@@ -43,5 +43,31 @@ RSpec.describe MainController, type: :controller do
         expect(assigns(:articles)).to match_array([ found ])
       end
     end
+
+    context "when there are more articles than one page" do
+      let!(:articles) do
+        Array.new(12) do |index|
+          create(
+            :article,
+            title: format("Page article %02d", index),
+            rubric: rubrics.first,
+            created_at: Time.zone.local(2026, 1, 1) + index.hours
+          )
+        end
+      end
+
+      it "assigns the first ten articles" do
+        expect(assigns(:articles).map(&:title)).to eq((2..11).map { |index| format("Page article %02d", index) }.reverse)
+        expect(assigns(:has_more)).to be(true)
+      end
+
+      it "returns the next page without the layout" do
+        get :index, params: { page: 2 }, xhr: true
+
+        expect(response).to have_http_status(:ok)
+        expect(assigns(:articles).map(&:title)).to eq([ "Page article 01", "Page article 00" ])
+        expect(response.headers["X-Has-More"]).to eq("0")
+      end
+    end
   end
 end
