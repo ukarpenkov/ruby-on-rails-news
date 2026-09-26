@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "build:comments": "esbuild app/javascript/comments/index.jsx --bundle --minify --format=esm --target=es2022 --jsx=automatic --define:process.env.NODE_ENV=\\\"production\\\" --outfile=app/assets/builds/comments.js"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

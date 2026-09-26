@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to login_path, status: :see_other unless current_user
+    return if current_user
+
+    respond_to do |format|
+      format.json { render json: { error: "Войдите, чтобы продолжить" }, status: :unauthorized }
+      format.any { redirect_to login_path, status: :see_other }
+    end
   end
 
   def favorited?(article)

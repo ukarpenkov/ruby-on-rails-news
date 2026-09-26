@@ -1,2 +1,36 @@
 #!/usr/bin/env ruby
-exec "./bin/rails", "server", *ARGV
+# frozen_string_literal: true
+
+APP_ROOT = File.expand_path("..", __dir__)
+Dir.chdir(APP_ROOT)
+
+def start_rails
+  exec("./bin/rails", "server", *ARGV)
+end
+
+unless system("npm", "run", "build:comments")
+  warn "Comments island was not built. Run npm install, then bin/dev again."
+  warn "Starting Rails without the React bundle."
+  start_rails
+end
+
+js_pid = Process.spawn("npm", "run", "build:comments", "--", "--watch")
+web_pid = Process.spawn("./bin/rails", "server", *ARGV)
+
+stopping = false
+stop = lambda do |signal|
+  next if stopping
+
+  stopping = true
+  Process.kill(signal, js_pid) rescue nil
+  Process.kill(signal, web_pid) rescue nil
+end
+
+trap("INT") { stop.call("INT") }
+trap("TERM") { stop.call("TERM") }
+
+Process.wait(web_pid)
+status = $?.exitstatus
+stop.call("TERM")
+Process.wait(js_pid) rescue nil
+exit status || 1

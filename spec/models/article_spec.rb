@@ -7,6 +7,7 @@ RSpec.describe Article, type: :model do
   it { should validate_presence_of :body }
   it { should belong_to(:rubric) }
   it { should have_many(:favorites).dependent(:destroy) }
+  it { should have_many(:comments).dependent(:destroy) }
 
   describe ".search" do
     let!(:rubric) { create(:rubric) }

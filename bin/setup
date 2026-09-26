@@ -21,6 +21,10 @@ FileUtils.chdir APP_ROOT do
   puts "== Installing dependencies =="
   system("bundle check") || system!("bundle install")
 
+  puts "\n== Installing the comments island =="
+  system! "npm install"
+  system! "npm run build:comments"
+
   puts "\n== Checking PostgreSQL =="
   unless system("pg_isready --quiet")
     abort "PostgreSQL is not running. Start it with: brew services start postgresql@16"

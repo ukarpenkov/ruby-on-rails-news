@@ -1,0 +1,11 @@
+<%= tag.section(
+      id: "comments",
+      class: "comments",
+      data: {
+        comments_root: true,
+        create_url: article_comments_path(article),
+        login_url: login_path,
+        signed_in: current_user.present?,
+        comments: comments.map(&:to_props).to_json
+      }
+    ) %>

@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_articles, through: :favorites, source: :article
+  has_many :comments, dependent: :destroy
 
   validates :login, presence: true, uniqueness: true
   validates :password, presence: true, on: :create, if: :password_login?

@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of :login }
   it { should validate_uniqueness_of :login }
   it { should have_secure_password }
+  it { should have_many(:comments).dependent(:destroy) }
   it { should have_many(:favorites).dependent(:destroy) }
   it { should have_many(:favorite_articles).through(:favorites) }
   it { should validate_length_of(:password).is_at_least(4) }

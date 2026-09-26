@@ -6,6 +6,8 @@
   <h1 class="story__title"><%= @article.title %></h1>
   <p class="story__body"><%= @article.body %></p>
 
+  <%= render "comments/root", article: @article, comments: @comments %>
+
   <p class="story__back">
     <%= link_to "Back to news", root_path %>
   </p>
