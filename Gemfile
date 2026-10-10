@@ -5,7 +5,7 @@ gem "rails", "~> 8.1.3", ">= 8.1.3.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use PostgreSQL as the database for Active Record
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.7"
 
 # json 3.x breaks Rails 8.1 session cookies: JSON.parse no longer takes a second positional arg.
 gem "json", "< 3"
